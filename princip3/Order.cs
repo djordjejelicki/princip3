@@ -1,4 +1,5 @@
-﻿using System;
+﻿using princip3.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace princip3
     {
         public int orderNum { get; set;}
         public List<OrderItem> orderItems { get; set;}
+        public ServiceType ServiceType { get; set; }
         public double totalPrice { get; set;}
 
         public Order(int counter)
@@ -17,6 +19,12 @@ namespace princip3
             this.orderNum = counter;
             this.orderItems = new List<OrderItem>();
             this.totalPrice = 0;
+            
+        }
+
+        public void AddServiceType(ServiceType serviceType)
+        {
+            ServiceType = serviceType;
         }
 
         public void AddOrderItem(OrderItem orderItem)
@@ -27,7 +35,9 @@ namespace princip3
 
         public double TotalOrderPrice()
         {
-            return totalPrice;
+            
+            double totalOrderPriceService = ServiceType.ServicePrice(totalPrice);
+            return totalOrderPriceService;
         }
 
         public void DisplayOrder()
@@ -38,7 +48,9 @@ namespace princip3
             {
                 orderItem.DisplayOrderItem();
             }
+            ServiceType.DisplayService(totalPrice);
             Console.WriteLine($"TOTAL ORDER PRICE: {totalPrice}");
+            Console.WriteLine($"TOTAL ORDER PRICE with service: {TotalOrderPrice()}");
             
             Console.WriteLine("---------------------");
             

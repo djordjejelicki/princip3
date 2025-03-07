@@ -1,4 +1,5 @@
 ﻿using princip3.Coffes;
+using princip3.Service;
 using princip3.Toppings;
 using System;
 using System.Collections.Generic;
@@ -30,87 +31,7 @@ namespace princip3
                 {
                     counter++;
                     Order order = new Order(counter);
-                    while (true)
-                    {
-                        Console.WriteLine();
-                        string choice = ChoosingItems();
-                        if (choice == "1")
-                        {
-                            string size = ChoosingSize();
-                            Console.WriteLine();
-                            if(size == "1")
-                            {
-                                OrderItem newOrderItem = new OrderItem(new Espresso("R"));
-                                TopingChoosing(newOrderItem);
-                                AddingItemInOrder(order, newOrderItem);
-                            }
-                            else if (size == "2")
-                            {
-                                OrderItem newOrderItem = new OrderItem(new Espresso("L"));
-                                TopingChoosing(newOrderItem);
-                                AddingItemInOrder(order, newOrderItem);
-                            }
-                            else
-                            {
-                                Console.WriteLine("You didnt enter something properly , try again");
-                            }
-                           
-                        }
-                        else if (choice == "2")
-                        {
-                            string size = ChoosingSize();
-                            Console.WriteLine();
-                            if (size == "1")
-                            {
-                                OrderItem newOrderItem = new OrderItem(new Cappuccino("R"));
-                                TopingChoosing(newOrderItem);
-                                AddingItemInOrder(order, newOrderItem);
-                            }
-                            else if (size == "2")
-                            {
-                                OrderItem newOrderItem = new OrderItem(new Cappuccino("L"));
-                                TopingChoosing(newOrderItem);
-                                AddingItemInOrder(order,newOrderItem);
-                            }
-                            else
-                            {
-                                Console.WriteLine("You didnt enter something properly , try again");
-                            }
-                        }
-                        else if (choice == "3")
-                        {
-                            string size = ChoosingSize();
-                            Console.WriteLine();
-                            if (size == "1")
-                            {
-                                OrderItem newOrderItem = new OrderItem(new LatteMachiato("R"));
-                                TopingChoosing(newOrderItem);
-                                AddingItemInOrder(order, newOrderItem);
-                            }
-                            else if (size == "2")
-                            {
-                                OrderItem newOrderItem = new OrderItem(new LatteMachiato("L"));
-                                TopingChoosing(newOrderItem);
-                                AddingItemInOrder(order, newOrderItem);
-                            }
-                            else
-                            {
-                                Console.WriteLine("You didnt enter something properly , try again");
-                            }
-                        }
-                        else if (choice == "4")
-                        {
-                            Console.WriteLine("Your order is: ");
-                            order.DisplayOrder();
-                            Orders.Add(order);
-                            TotalIncome += order.TotalOrderPrice();
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"There is no option {choice} in menu , try again");
-                        }
-                    }
+                    OrderingCoffe(order);
 
                 }
                 else if (answer == "2")
@@ -216,6 +137,126 @@ namespace princip3
                 return;
             }
             order.AddOrderItem(newOrderItem);
+        }
+
+        void AddingOrderService(Order order)
+        {
+            while (true)
+            {
+
+                Console.WriteLine();
+                Console.WriteLine($"------CHOSE SERVICE FOR ORDER: {order.orderNum}------");
+                Console.WriteLine("1. In home");
+                Console.WriteLine("2. Take away");
+                Console.WriteLine("3. Coupon");
+                string choice = Console.ReadLine();
+
+                if(choice == "1")
+                {
+                    order.AddServiceType(new InHome());
+                    break;
+                }
+                else if(choice == "2")
+                {
+                    order.AddServiceType(new TakeAway());
+                    break;
+                }
+                else if(choice == "3")
+                {
+                    order.AddServiceType(new Coupon());
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine($"There is no option {choice} , Try again");
+                }
+            }
+        }
+
+        void OrderingCoffe(Order order)
+        {
+            while (true)
+            {
+                Console.WriteLine();
+                string choice = ChoosingItems();
+                if (choice == "1")
+                {
+                    string size = ChoosingSize();
+                    Console.WriteLine();
+                    if (size == "1")
+                    {
+                        OrderItem newOrderItem = new OrderItem(new Espresso("R"));
+                        TopingChoosing(newOrderItem);
+                        AddingItemInOrder(order, newOrderItem);
+                    }
+                    else if (size == "2")
+                    {
+                        OrderItem newOrderItem = new OrderItem(new Espresso("L"));
+                        TopingChoosing(newOrderItem);
+                        AddingItemInOrder(order, newOrderItem);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You didnt enter something properly , try again");
+                    }
+
+                }
+                else if (choice == "2")
+                {
+                    string size = ChoosingSize();
+                    Console.WriteLine();
+                    if (size == "1")
+                    {
+                        OrderItem newOrderItem = new OrderItem(new Cappuccino("R"));
+                        TopingChoosing(newOrderItem);
+                        AddingItemInOrder(order, newOrderItem);
+                    }
+                    else if (size == "2")
+                    {
+                        OrderItem newOrderItem = new OrderItem(new Cappuccino("L"));
+                        TopingChoosing(newOrderItem);
+                        AddingItemInOrder(order, newOrderItem);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You didnt enter something properly , try again");
+                    }
+                }
+                else if (choice == "3")
+                {
+                    string size = ChoosingSize();
+                    Console.WriteLine();
+                    if (size == "1")
+                    {
+                        OrderItem newOrderItem = new OrderItem(new LatteMachiato("R"));
+                        TopingChoosing(newOrderItem);
+                        AddingItemInOrder(order, newOrderItem);
+                    }
+                    else if (size == "2")
+                    {
+                        OrderItem newOrderItem = new OrderItem(new LatteMachiato("L"));
+                        TopingChoosing(newOrderItem);
+                        AddingItemInOrder(order, newOrderItem);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You didnt enter something properly , try again");
+                    }
+                }
+                else if (choice == "4")
+                {
+                    AddingOrderService(order);
+                    Console.WriteLine("Your order is: ");
+                    order.DisplayOrder();
+                    Orders.Add(order);
+                    TotalIncome += order.TotalOrderPrice();
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine($"There is no option {choice} in menu , try again");
+                }
+            }
         }
 
         

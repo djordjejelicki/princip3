@@ -36,13 +36,7 @@ namespace princip3
                 }
                 else if (answer == "2")
                 {
-                    Console.WriteLine("---------ALL ORDERS--------");
-                    foreach(var order in Orders)
-                    {
-                        order.DisplayOrder();
-                    }
-                    Console.WriteLine();
-                    Console.WriteLine($"Total income: {TotalIncome}");
+                    DisplayingAllOrders();
                 }
                 else if (answer == "3")
                 {
@@ -56,7 +50,7 @@ namespace princip3
             }
         }
 
-        void TopingChoosing(OrderItem newOrderItem)
+        private void TopingChoosing(OrderItem newOrderItem)
         {
             while (true)
             {
@@ -91,7 +85,7 @@ namespace princip3
             }
         }
 
-        string ChoosingSize()
+        private string ChoosingSize()
         {
             Console.WriteLine();
             Console.WriteLine("-------------");
@@ -102,7 +96,7 @@ namespace princip3
             return size;
         }
 
-        string ChoosingItems()
+        private string ChoosingItems()
         {
             Console.WriteLine("---CHOSE ITEMS---");
             Console.WriteLine("1. Espresso");
@@ -113,7 +107,7 @@ namespace princip3
             return choice;
         }
         
-        string ChoosingAction()
+        private string ChoosingAction()
         {
             Console.WriteLine("---------COFFE SHOP----------");
             Console.WriteLine("1. Take order");
@@ -123,7 +117,7 @@ namespace princip3
             return answer;
         }
 
-        void AddingItemInOrder(Order order,OrderItem newOrderItem)
+        private void AddingItemInOrder(Order order,OrderItem newOrderItem)
         {
             Console.WriteLine("Write quantity: ");
             int quantity = int.Parse((Console.ReadLine()));
@@ -139,7 +133,7 @@ namespace princip3
             order.AddOrderItem(newOrderItem);
         }
 
-        void AddingOrderService(Order order)
+        private void AddingOrderService(Order order)
         {
             while (true)
             {
@@ -173,7 +167,7 @@ namespace princip3
             }
         }
 
-        void OrderingCoffe(Order order)
+        private void OrderingCoffe(Order order)
         {
             while (true)
             {
@@ -257,6 +251,21 @@ namespace princip3
                     Console.WriteLine($"There is no option {choice} in menu , try again");
                 }
             }
+        }
+        private void DisplayingAllOrders()
+        {
+            Console.WriteLine("---------ALL ORDERS--------");
+            
+            if(Orders.Count == 0) {
+                Console.WriteLine("There is none order yet in coffe shop");
+            }
+
+            foreach (var order in Orders)
+            {
+                order.DisplayOrder();
+            }
+            Console.WriteLine();
+            Console.WriteLine($"Total income: {TotalIncome}");
         }
 
         

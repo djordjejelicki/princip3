@@ -139,7 +139,7 @@ namespace princip3
             {
 
                 Console.WriteLine();
-                Console.WriteLine($"------CHOSE SERVICE FOR ORDER: {order.orderNum}------");
+                Console.WriteLine($"------CHOSE SERVICE FOR ORDER: {order.OrderNum}------");
                 Console.WriteLine("1. In home");
                 Console.WriteLine("2. Take away");
                 Console.WriteLine("3. Coupon");

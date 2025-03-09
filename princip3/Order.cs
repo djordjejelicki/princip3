@@ -9,16 +9,16 @@ namespace princip3
 {
     public class Order
     {
-        public int orderNum { get; set;}
-        public List<OrderItem> orderItems { get; set;}
+        public int OrderNum { get; set; }
+        public List<OrderItem> OrderItems { get; set; } 
         public ServiceType ServiceType { get; set; }
-        public double totalPrice { get; set;}
+        public double TotalPrice { get; set; }
 
         public Order(int counter)
         {
-            this.orderNum = counter;
-            this.orderItems = new List<OrderItem>();
-            this.totalPrice = 0;
+            this.OrderNum = counter;
+            this.OrderItems = new List<OrderItem>();
+            this.TotalPrice = 0;
             
         }
 
@@ -29,27 +29,27 @@ namespace princip3
 
         public void AddOrderItem(OrderItem orderItem)
         {
-            orderItems.Add(orderItem);
-            totalPrice += orderItem.OrderItemPrice();
+            OrderItems.Add(orderItem);
+            TotalPrice += orderItem.OrderItemPrice();
         }
 
         public double TotalOrderPrice()
         {
             
-            double totalOrderPriceService = ServiceType.ServicePrice(totalPrice);
+            double totalOrderPriceService = ServiceType.ServicePrice(TotalPrice);
             return totalOrderPriceService;
         }
 
         public void DisplayOrder()
         {
-            Console.WriteLine($"---------ORDER: {orderNum} -------");
+            Console.WriteLine($"---------ORDER: {OrderNum} -------");
             Console.WriteLine("ITEMS:");
-            foreach(var orderItem in orderItems)
+            foreach(var orderItem in OrderItems)
             {
                 orderItem.DisplayOrderItem();
             }
-            ServiceType.DisplayService(totalPrice);
-            Console.WriteLine($"TOTAL ORDER PRICE: {totalPrice}");
+            ServiceType.DisplayService(TotalPrice);
+            Console.WriteLine($"TOTAL ORDER PRICE: {TotalPrice}");
             Console.WriteLine($"TOTAL ORDER PRICE with service: {TotalOrderPrice()}");
             
             Console.WriteLine("---------------------");

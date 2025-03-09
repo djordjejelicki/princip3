@@ -17,7 +17,7 @@ namespace princip3.Service
         public override void DisplayService(double totalPrice)
         {
             Console.WriteLine();
-            Console.WriteLine("There is now charge for in home , enjoy");
+            Console.WriteLine("There is now charge for in home service");
             Console.WriteLine();
         }
 

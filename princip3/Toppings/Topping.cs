@@ -17,11 +17,6 @@ namespace princip3.Toppings
             Price = price;
         }
 
-        public double GetPrice()
-        {
-            return Price;
-        }
-
         public void DisplayTopping()
         {
             Console.WriteLine($"NAME: {Name}  PRICE per unit: {Price}");

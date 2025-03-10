@@ -50,15 +50,15 @@ namespace princip3
             Console.WriteLine();
             Item.DisplayCoffe();
             Console.WriteLine($"QUANTITY: {Quantity}");
-            if(Toppings.Count > 0)
-            {
+            
+            
                 Console.WriteLine("TOPINGS:");
                 foreach(var topping in Toppings)
                 {
                 topping.DisplayTopping();
                 }
 
-            }
+            
             Console.WriteLine($"TOTALPRICE: {OrderItemPrice()}");
             Console.WriteLine();
         }

@@ -13,11 +13,14 @@ namespace princip3
     {
         public List<Order> Orders { get; set; }
         public double TotalIncome { get; set; }
+        
+        
 
 
         public CoffeShop() {
             Orders = new List<Order>();
             TotalIncome = 0;
+            
         } 
 
         public void Menu()
